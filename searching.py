@@ -23,11 +23,48 @@ def read_data(file_name, field):
     else:
         return my_dict[field]
 
+def linear_search(sequence, number):
+    """
+    :param sequence:
+    :param number:
+    :return:
+    """
+
+    positions = []
+    for idx, num in enumerate(sequence):
+        if num == number:
+            positions.append(idx)
+        else:
+            pass
+    return {'positions':positions, 'count':len(positions)}
+
+def pattern_search(sequence, pattern):
+    """
+    :param sequence:
+    :param pattern:
+    :return:
+    """
+    list_of_positions = set()
+    size = len(sequence)
+    window = len(pattern)
+    end = size - window + 1
+
+    for num in range(0, end):
+        partial_seq = sequence[num:num+window]
+        if partial_seq == pattern:
+            list_of_positions.add(int(num + window/2))
+        else:
+            pass
+    return list_of_positions
+
 
 
 def main():
+    sequence = read_data("sequential.json", "dna_sequence")
     sequential_data = read_data("sequential.json", "unordered_numbers")
     print(sequential_data)
+
+    print(pattern_search(sequence, "ATA"))
     pass
 
 
